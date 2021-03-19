@@ -12,19 +12,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("demo", "im here ")
+        Log.d("demo", "I'm here")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val repository = Repository()
-        val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getPost()
-        Log.d("demo", "im here 2")
-        viewModel.myResponse.observe(this, Observer { response ->
-            Log.d("demo", response.title)
-        })
+        //val repository = Repository()
+        //val viewModelFactory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        Log.d("demo", "im here 3")
+        viewModel.myResponse.observe(this, Observer { response ->
+            Log.d("demo", response.body)
+        })
+        viewModel.getPost()
+
 
 
     }
