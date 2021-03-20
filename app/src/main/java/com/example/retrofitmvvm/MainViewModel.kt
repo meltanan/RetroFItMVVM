@@ -9,11 +9,11 @@ import com.example.retrofitmvvm.repository.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 
-class MainViewModel () : ViewModel() {
+class MainViewModel (private val repository: Repository) : ViewModel() {
 
-    val repository = Repository()
-    val myResponse: MutableLiveData<Post> = MutableLiveData()
+    val myResponse: MutableLiveData <Response <Post>> = MutableLiveData()
     fun getPost(){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
@@ -21,8 +21,6 @@ class MainViewModel () : ViewModel() {
                 myResponse.postValue(response)
             }
 
-
-         //   myResponse.value = response
         }
 
     }
